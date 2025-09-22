@@ -9,7 +9,7 @@ trap _cleanup INT TERM EXIT
 
 sed -i -e 's|-O2|-Oz|' /etc/makepkg.conf
 
-git clone --depth 1 https://gitlab.archlinux.org/archlinux/packaging/packages/llvm "$tmpbuild"
+git clone --single-branch --filter=blob:none --depth 1 --no-tags https://gitlab.archlinux.org/archlinux/packaging/packages/llvm "$tmpbuild"
 cd "$tmpbuild"
 
 case "$ARCH" in
