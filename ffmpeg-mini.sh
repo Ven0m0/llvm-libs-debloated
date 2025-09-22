@@ -56,7 +56,7 @@ fi
 echo "Versions match, building package..."
 echo "----------------------------------------------------------------"
 
-makepkg -fs --noconfirm --skippgpcheck
+makepkg -fscCr --noconfirm --skippgpcheck
 
 ls -la
 rm -f ./ffmpeg-docs-*.pkg.tar.* ./ffmpeg-debug-*.pkg.tar.*
