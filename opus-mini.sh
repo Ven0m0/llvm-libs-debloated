@@ -1,13 +1,13 @@
 #!/bin/sh
 
 set -ex
-
+LC_ALL=C
 ARCH="$(uname -m)"
 tmpbuild="$PWD"/tmpbuild
 _cleanup() { rm -rf "$tmpbuild"; }
 trap _cleanup INT TERM EXIT
 
-git clone --depth 1 https://gitlab.archlinux.org/archlinux/packaging/packages/opus.git "$tmpbuild"
+git clone --single-branch --filter=blob:none --depth 1 --no-tags https://gitlab.archlinux.org/archlinux/packaging/packages/opus.git "$tmpbuild"
 cd "$tmpbuild"
 
 case "$ARCH" in
@@ -53,7 +53,7 @@ fi
 echo "Versions match, building package..."
 echo "----------------------------------------------------------------"
 
-makepkg -fs --noconfirm --skippgpcheck
+makepkg -fscCr --noconfirm --skippgpcheck
 
 ls -la
 rm -fv *-docs-*.pkg.tar.* *-debug-*.pkg.tar.*
