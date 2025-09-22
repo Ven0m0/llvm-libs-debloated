@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -ex
-
+LC_ALL=C
 ARCH="$(uname -m)"
 tmpbuild="$PWD"/tmpbuild
 _cleanup() { rm -rf "$tmpbuild"; }
@@ -10,7 +10,7 @@ trap _cleanup INT TERM EXIT
 case "$ARCH" in
 	x86_64)
 		EXT=zst
-		git clone --depth 1 https://gitlab.archlinux.org/archlinux/packaging/packages/mesa.git "$tmpbuild"
+		git clone --single-branch --filter=blob:none --depth 1 --no-tags https://gitlab.archlinux.org/archlinux/packaging/packages/mesa.git "$tmpbuild"
 		cd "$tmpbuild"
 		# remove aarch64 drivers from x86_64
 		sed -i \
@@ -24,7 +24,7 @@ case "$ARCH" in
 		;;
 	aarch64)
 		EXT=xz
-		git clone https://github.com/archlinuxarm/PKGBUILDs "$tmpbuild"
+		git clone --single-branch --filter=blob:none --depth 1 --no-tags https://github.com/archlinuxarm/PKGBUILDs "$tmpbuild"
 		cd "$tmpbuild"
 		mv -v ./extra/mesa/* ./extra/mesa/.* ./
 		;;
