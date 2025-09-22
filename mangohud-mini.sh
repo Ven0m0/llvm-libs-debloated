@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -ex
-
+LC_ALL=C
 ARCH="$(uname -m)"
 tmpbuild="$PWD"/tmpbuild
 _cleanup() { rm -rf "$tmpbuild"; }
@@ -9,7 +9,7 @@ trap _cleanup INT TERM EXIT
 
 sed -i -e 's|-O2|-Oz|' /etc/makepkg.conf
 
-git clone --depth 1 https://github.com/VHSgunzo/mangohud-PKGBUILD.git "$tmpbuild"
+git clone --single-branch --filter=blob:none --depth 1 --no-tags https://github.com/VHSgunzo/mangohud-PKGBUILD.git "$tmpbuild"
 cd "$tmpbuild"
 rm -rf ./lib32-mangohud
 mv -v ./mangohud/PKGBUILD ./
