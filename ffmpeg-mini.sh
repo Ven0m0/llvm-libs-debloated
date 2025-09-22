@@ -12,12 +12,12 @@ sed -i -e 's|-O2|-Oz|' /etc/makepkg.conf
 case "$ARCH" in
 	x86_64)
 		EXT=zst
-		git clone --depth 1 https://gitlab.archlinux.org/archlinux/packaging/packages/ffmpeg.git "$tmpbuild"
+		git clone --single-branch --filter=blob:none --depth 1 --no-tags https://gitlab.archlinux.org/archlinux/packaging/packages/ffmpeg.git "$tmpbuild"
 		cd "$tmpbuild"
 		;;
 	aarch64)
 		EXT=xz
-		git clone --depth 1 https://github.com/archlinuxarm/PKGBUILDs.git "$tmpbuild"
+		git clone --single-branch --filter=blob:none --depth 1 --no-tags https://github.com/archlinuxarm/PKGBUILDs.git "$tmpbuild"
 		cd "$tmpbuild"
 		mv ./extra/ffmpeg/* ./extra/ffmpeg/.* ./
 		;;
