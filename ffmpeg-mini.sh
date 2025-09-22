@@ -1,7 +1,7 @@
 #!/bin/sh
 
 set -ex
-
+LC_ALL=C
 ARCH="$(uname -m)"
 tmpbuild="$PWD"/tmpbuild
 _cleanup() { rm -rf "$tmpbuild"; }
