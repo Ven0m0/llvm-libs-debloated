@@ -9,7 +9,7 @@ trap _cleanup INT TERM EXIT
 
 sed -i -e 's|-O2|-Os|' /etc/makepkg.conf
 
-git clone --depth 1 https://gitlab.archlinux.org/archlinux/packaging/packages/gtk3.git "$tmpbuild"
+git clone --single-branch --filter=blob:none --depth 1 --no-tags https://gitlab.archlinux.org/archlinux/packaging/packages/gtk3.git "$tmpbuild"
 cd "$tmpbuild"
 
 case "$ARCH" in
