@@ -39,13 +39,7 @@ sed -i -e "s|x86_64|$ARCH|" ./PKGBUILD
 sed -i -e 's|-g1|-g0|' ./PKGBUILD
 
 # debloat package, remove x265 support and AV1 encoding support
-sed -i \
-	-e '/x265/d'                              \
-	-e '/librav1e/d'                          \
-	-e 's/--enable-libsvtav1/--enable-small/' \
-	-e '/--enable-vapoursynth/d'              \
-	./PKGBUILD
-
+sed -i -e '/x265/d' -e 's/--enable-small/' ./PKGBUILD
 cat ./PKGBUILD
 
 # Do not build if version does not match with upstream
