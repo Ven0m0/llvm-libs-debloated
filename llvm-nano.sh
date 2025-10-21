@@ -14,7 +14,7 @@ case "$ONE_PACKAGE" in
 	*) :> ~/OPERATION_ABORTED; exit 0;;
 esac
 
-sed -i -e 's|-O2|-Oz|' /etc/makepkg.conf
+sed -i -e 's|-O2|-O3|' /etc/makepkg.conf
 
 git clone --depth 1 https://gitlab.archlinux.org/archlinux/packaging/packages/llvm "$tmpbuild"
 cd "$tmpbuild"
@@ -22,11 +22,11 @@ cd "$tmpbuild"
 case "$ARCH" in
 	x86_64)
 		EXT=zst
-		TARGETS_TO_BUILD="X86;AMDGPU"
+		TARGETS_TO_BUILD="X86"
 		;;
 	aarch64)
 		EXT=xz
-		TARGETS_TO_BUILD="AArch64;AMDGPU"
+		TARGETS_TO_BUILD="AArch64"
 		;;
 	*)
 		>&2 echo "Unsupported Arch: '$ARCH'"
