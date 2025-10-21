@@ -14,7 +14,7 @@ case "$ONE_PACKAGE" in
 	*) :> ~/OPERATION_ABORTED; exit 0;;
 esac
 
-sed -i -e 's|-O2|-Oz|' /etc/makepkg.conf
+sed -i -e 's|-O2|-O3|' /etc/makepkg.conf
 
 case "$ARCH" in
 	x86_64)
