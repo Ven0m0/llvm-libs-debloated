@@ -1,8 +1,7 @@
 #!/bin/sh
-
 set -e
 
-sed -i -e 's|-O2|-Oz|' /etc/makepkg.conf
+sed -i -e 's|-O2|-O3|' /etc/makepkg.conf
 
 get-pkgbuild
 cd "$BUILD_DIR"
@@ -10,8 +9,6 @@ cd "$BUILD_DIR"
 # debloat package, remove x265 support and AV1 encoding support
 sed -i \
 	-e '/x265/d'                                \
-	-e '/librav1e/d'                            \
-	-e '/--enable-libsvtav1/d'                  \
 	-e 's/--enable-vapoursynth/--enable-small/' \
 	"$PKGBUILD"
 
